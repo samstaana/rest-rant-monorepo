@@ -1,30 +1,34 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+
+  class Place extends Model {
+
 
     static associate({ Comment }) {
-      User.hasMany(Comment, { as: 'author', foreignKey: 'author_id' })
+      Place.hasMany(Comment, { foreignKey: 'place_id', as: 'comments' })
     }
 
   };
-  User.init({
-    userId: {
+
+  Place.init({
+    placeId: {
       type: DataTypes.SMALLINT,
       primaryKey: true,
       autoIncrement: true
 
     },
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    passwordDigest: DataTypes.STRING
+    name: DataTypes.STRING,
+    city: DataTypes.STRING,
+    state: DataTypes.STRING,
+    cuisines: DataTypes.STRING,
+    pic: DataTypes.STRING,
+    founded: DataTypes.INTEGER
   }, {
     sequelize,
     underscored: true,
-    modelName: 'User',
+    modelName: 'Place',
   });
-  return User;
+  return Place;
 };
