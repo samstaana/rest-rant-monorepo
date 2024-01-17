@@ -3,7 +3,6 @@ const db = require("../models")
 const bcrypt = require('bcrypt')
 
 const { User } = db
-
   
 router.post('/', async (req, res) => {
     
@@ -19,5 +18,5 @@ router.post('/', async (req, res) => {
         res.json({ user })
     }
 })
-
+  
 module.exports = router
